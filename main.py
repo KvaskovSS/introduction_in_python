@@ -58,8 +58,16 @@ def task4() :
     else:
         print('NO')
 
-#task1()
-#task2()
-#task3()
-#task4()
+def main() :
+    i = int(input("Выберите номер задание [1 ; 4]  : "))
+    if i == 1 :
+        task1()
+    elif i == 2 :
+        task2()
+    elif i == 3 :
+        task3()
+    elif i == 4 :
+        task4()
 
+if __name__ == "__main__" :
+    main()
