@@ -1,41 +1,35 @@
-import re
-def isCyrillic(text):
-	return bool(re.search('[а-яА-Я]', text))
+def power(a, b):
+    if b == 0:
+        return 1
+    else:
+        return a * power(a, b-1)
+
+def sum(a, b):
+    if b == 0:
+        return a
+    elif a == 0:
+        return b
+    else:
+        return sum(a+1, b-1)
 
 def task1() :
-    n = int(input("Введите количество элементов первого множества: "))
-    m = int(input("Введите количество элементов второго множества: "))
+    a = int(input("Введите число, которое нужно возвести в степень: "))
+    b = int(input("Введите целую степень, в которую нужно возвести число: "))
 
-    set1 = set()
-    set2 = set()
+    result = power(a, b)
 
-    print("Введите элементы первого множества:")
-    for i in range(n):
-        set1.add(int(input()))
-
-    print("Введите элементы второго множества:")
-    for i in range(m):
-        set2.add(int(input()))
-
-    common_set = set1.intersection(set2)
-
-    print("Общие элементы двух множеств:", sorted(common_set))
+    print(f"A = {a}; B = {b} -> {result}")
 
 def task2() :
-    n = int(input("Введите количество кустов: "))
-    berries = list(map(int, input("Введите количество ягод на каждом кусте через пробел: ").split()))
+    a = int(input("Введите первое число: "))
+    b = int(input("Введите второе число: "))
 
-    max_berries = 0
+    result = sum(a, b)
 
-    for i in range(n):
-        curr_berries = berries[i] + berries[(i+1)%n] + berries[(i+2)%n] # суммируем ягоды с текущего куста и двух соседних
-        if curr_berries > max_berries:
-            max_berries = curr_berries
-
-    print("Максимальное количество ягод, которое может собрать собирающий модуль за один заход:", max_berries)
+    print("Сумма чисел", a, "и", b, "=", result)
     
 def main() :
-    i = int(input("Выберите номер задание [1 ; 3]  : "))
+    i = int(input("Выберите номер задание [1 ; 2]  : "))
     if i == 1 :
         task1()
     elif i == 2 :
