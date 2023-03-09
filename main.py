@@ -1,32 +1,32 @@
-def power(a, b):
-    if b == 0:
-        return 1
-    else:
-        return a * power(a, b-1)
-
-def sum(a, b):
-    if b == 0:
-        return a
-    elif a == 0:
-        return b
-    else:
-        return sum(a+1, b-1)
-
 def task1() :
-    a = int(input("Введите число, которое нужно возвести в степень: "))
-    b = int(input("Введите целую степень, в которую нужно возвести число: "))
+    a1 = int(input('Введите первый элемент: '))
+    d = int(input('Введите разность: '))
+    n = int(input('Введите количество элементов: '))
 
-    result = power(a, b)
+    progression = []
+    for i in range(n):
+        progression.append(a1 + i*d)
 
-    print(f"A = {a}; B = {b} -> {result}")
+    print(progression)
 
 def task2() :
-    a = int(input("Введите первое число: "))
-    b = int(input("Введите второе число: "))
+    a1 = int(input('Введите первый элемент: '))
+    d = int(input('Введите разность: '))
+    n = int(input('Введите количество элементов: '))
+    min_value = int(input('Введите минимальное значение: '))
+    max_value = int(input('Введите максимальное значение: '))
 
-    result = sum(a, b)
+    progression = []
+    for i in range(n):
+        progression.append(a1 + i*d)
 
-    print("Сумма чисел", a, "и", b, "=", result)
+    indices = []
+    for i in range(n):
+        if min_value <= progression[i] <= max_value:
+            indices.append(i)
+
+    print('Массив:', progression)
+    print('Индексы элементов, значения которых принадлежат заданному диапазону:', indices)
     
 def main() :
     i = int(input("Выберите номер задание [1 ; 2]  : "))
