@@ -22,6 +22,9 @@ class Person:
 students = [Person("Иван", "Иванов", 15), 
             Person("Петр", "Петров", 16), 
             Person("Анна", "Сидорова", 15)]
+
+#  Пример greet()
+#students[1].greet()
 # тут записываются рандомные оценки от 1 до 5 после чего выводит средний балл каждого студента
 for student in students:
     for i in range(5):
