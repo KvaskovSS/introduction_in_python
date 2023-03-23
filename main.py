@@ -1,14 +1,25 @@
+from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
+import random
 
-data = pd.read_csv('sample_data/california_housing_train.csv')
+lst = ['robot'] * 10
+lst += ['human'] * 10
+random.shuffle(lst)
+data = pd.DataFrame({'whoAmI': lst})
 
-filtered_data = data[data['population'] <= 500]
-mean_value = filtered_data['median_house_value'].mean()
+# C использованием get_dummies
+one_hot = pd.get_dummies(data['whoAmI'], sparse=False)
 
-print("Средняя стоимость дома, где кол-во людей от 0 до 500:", mean_value)
+data = pd.concat([data, one_hot], axis=1)
+print(data.head())
 
-min_population = data['population'].min()
-sub_table = data[data['population'] == min_population]
-max_households = sub_table['households'].max()
 
-print("Максимальное количество households в зоне минимального значения population:", max_households)
+# Без использования get_dummies
+enc = OneHotEncoder()
+enc.fit(data[['whoAmI']])
+
+one_hot = enc.transform(data[['whoAmI']])
+cols = enc.get_feature_names_out(['whoAmI'])
+
+one_hot_df = pd.DataFrame(one_hot.toarray(), columns=cols)
+print(one_hot_df.head())
